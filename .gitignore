@@ -35,3 +35,10 @@ wandb
 *.stats
 
 tools/tokenized_data_player*
+
+# 追記
+.ipynb_checkpoints
+.github
+.env
+gen_dialogue/data
+nohup.out

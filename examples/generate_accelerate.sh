@@ -1,6 +1,6 @@
-export CUDA_VISIBLE_DEVICES="0,1,2,3,4,5,6,7"
+export CUDA_VISIBLE_DEVICES="0,1,2,3"
 
-model_dir="output/moshiko-finetuned/step_10000_fp32"
+model_dir="output/moshiko-finetuned/step_1000_fp32"
 eval_data_files="path/to/proccessed_data/test-*.parquet"
 
 prompt_len=125
