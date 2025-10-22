@@ -143,7 +143,7 @@ def worker(process_id: int, dialogue_names: list[str], args: argparse.Namespace)
         pbar.set_postfix_str(dialogue_name)
 
         # load word-level transcript
-        with open(os.path.join(args.word_transcript_dir, f"{dialogue_name}.json")) as f:
+        with open(os.path.join(args.word_transcript_dir, f"{dialogue_name}.json"), encoding="utf-8-sig") as f:
             word_transcript = json.load(f)
 
         # tokenize text

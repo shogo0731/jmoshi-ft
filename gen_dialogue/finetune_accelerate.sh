@@ -15,24 +15,24 @@ export WANDB_MODE="disabled" # wandbを無効にする
 # --seed                        # 再現性のためのシード値
 
 accelerate launch \
-    --main_process_port 0 \
+    --main_process_port 12345 \
     --num_processes 4 \
     --num_machines 1 \
     --use_deepspeed \
     --deepspeed_config_file ds_configs/zero3-fp16-act_ckpt_cpu-off-load.json \
     finetune.py \
         --launcher accelerate \
-        --output_dir output/moshiko-finetuned \
-        --train_data_files processed_data/gen_dialogue/train-*.parquet \
-        --model_dir init_models/moshiko-both_streams-bfloat16 \
-        --model_dtype bfloat16 \
+        --output_dir output/j-moshi-ext-finetuned \
+        --train_data_files processed_data/mfa/train-*.parquet \
+        --model_dir init_models/j-moshi-ext-float32 \
+        --model_dtype float32 \
         --moshi_speakers A \
         --model_user_stream \
         --max_length 1028 \
         --min_length 64 \
-        --num_train_epochs 1000 \
+        --num_train_epochs 100 \
         --per_device_train_batch_size 1 \
-        --gradient_accumulation_steps 4 \
+        --gradient_accumulation_steps 8 \
         --num_warmup_steps 500 \
         --activation_checkpointing \
         --logging_steps 100 \

@@ -16,17 +16,18 @@ def init_embedding_module(
     emb: nn.Embedding,
     retain_token_ids: list[int],
 ) -> nn.Embedding:
-    # Initialize the embedding module with a Gaussian distribution
     dtype = emb.weight.dtype
     emb_weights = emb.weight.data
     mean = emb_weights.mean(dim=0)
-    vocab_size = emb_weights.size()[0]
-    sigma = ((emb_weights - mean).T @ (emb_weights - mean)) / vocab_size
+    vocab_size = emb_weights.size(0)
+    centered = emb_weights - mean
+    sigma = (centered.T @ centered) / vocab_size
+    epsilon = 1e-5
+    sigma = sigma + epsilon * torch.eye(sigma.size(0), device=sigma.device, dtype=sigma.dtype)
     dist = torch.distributions.multivariate_normal.MultivariateNormal(
         mean.to(torch.float32),
-        covariance_matrix=1e-5 * sigma.to(torch.float32),
-    )  # MultivariateNormal is supported only for float32
-
+        covariance_matrix=sigma.to(torch.float32),
+    )
     new_emb_weights = torch.stack(
         tuple(dist.sample() for _ in range(vocab_size)),
         dim=0,

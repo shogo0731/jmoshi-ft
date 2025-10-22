@@ -39,6 +39,8 @@ tools/tokenized_data_player*
 # 追記
 .ipynb_checkpoints
 .github
+.virtual_documents
 .env
 gen_dialogue/data
+model_assets
 nohup.out
