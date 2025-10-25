@@ -1,4 +1,6 @@
 numpy==1.26.4
+cffi==2.0.0
+urllib3==2.3.0
 
 python-dotenv
 jupyterlab
@@ -7,11 +9,13 @@ montreal-forced-aligner
 spacy
 sudachipy
 SudachiDict-core
+pgvector
 
 mecab-python3
 unidic-lite
 
 langchain
+langchain-chroma
 langchain-community
 langchain-core
 langchain-google-genai
