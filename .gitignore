@@ -22,7 +22,9 @@ data/spokenwoz_sample/*
 !data/spokenwoz_sample/audio
 !data/spokenwoz_sample/README.md
 
-processed_data
+# processed_data/*
+# 一時的に例外
+!processed_data/sbv/train-001-of-001.parquet
 
 init_models
 output
